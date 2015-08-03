@@ -55,12 +55,12 @@ void setup() {
 
 	//načtu data z eeprom
 	Serial.println("Loading fileid from EEPROM");
-	counter = EEPROMReadlong(12);
+	counter = EEPROMReadInt(12);
 	counter++;
 	Serial.print("Loaded: "); 
 	Serial.println((String)counter);
 	Serial.println("Writing new counter status");
-	EEPROMWritelong(12, counter);
+	EEPROMWriteInt(12, counter);
 
 
 
