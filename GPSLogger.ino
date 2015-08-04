@@ -156,7 +156,7 @@ void loop() {
 				// 9 ALTITUDE 
 				column(dataFile, (String)gps.altitude.meters());
 				// 10 number of satelites fixed
-				column(dataFile, (String)gps.satellites.value());
+				column(dataFile, (String)gps.satellites.value(), true);
 				
 
 				//end of line
@@ -190,11 +190,16 @@ unsigned int EEPROMReadInt(int address){
 }
 
 // Write CSV column to SD and into console
-void column( File df, String value){
+void column( File df, String value, boolean lastLine){
 	df.print(value);
-	df.print(",");
+	if (!lastLine) df.print(",");
 	Serial.print(value);
-	Serial.print(",");
+	if (!lastLine) Serial.print(",");
+}
+
+// optional argument version
+void column( File df, String value){
+	column(df, value, false);
 }
 
 //end line of csv
