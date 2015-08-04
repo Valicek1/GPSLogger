@@ -43,3 +43,7 @@ Simple GPS logger for Arduino. Tested with atmega328p (UNO Clone). Uses simple S
  - GPS Data valid last second
  - SD Card write
 
+## Prebuild Binaries
+ - atmega328p (arduino uno compatible pinout)
+ - 16Mhz XTAL
+
