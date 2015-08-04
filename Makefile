@@ -6,7 +6,7 @@ PARTNO=atmega328p
 
 build: 
 	[ -d tmp ] || mkdir tmp
-	arduino --verify --board $(BOARD) --pref build.path=tmp/ $(INOFILE)
+	arduino --verify --board $(BOARD) --pref build.path=tmp/ $(INOFILE) | sed 's/$(BASENAME)/$(INOFILE)/g'
 	cp tmp/$(BASENAME).cpp.eep $(BASENAME).eep
 	cp tmp/$(BASENAME).cpp.hex $(BASENAME).hex
 
@@ -15,7 +15,8 @@ all: clean isp-eep
 isp: build
 	avrdude -c usbasp -p $(PARTNO) -P USB -U flash:w:$(BASENAME).hex
 
-load: build	
+load: build
+	pgrep screen > /dev/null && pkill screen || true
 	avrdude -c arduino -p $(PARTNO) -P /dev/ttyUSB* -b 115200 -U flash:w:$(BASENAME).hex
 
 isp-full: build
