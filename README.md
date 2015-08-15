@@ -24,7 +24,7 @@ Simple GPS logger for Arduino. Tested with atmega328p (UNO Clone). Uses simple S
  - SD/SD2/SDHC card, fat16/fat32 format, 8.3 file name convention
  - CSV file, with firmware adjustable interval (define in sketch)
  - named as xxxxxxx.log where xxxxxxx is number of logging (EEPROM stored)
- - columns
+ - columns (divided with ',' character)
    - year
    - month
    - day
